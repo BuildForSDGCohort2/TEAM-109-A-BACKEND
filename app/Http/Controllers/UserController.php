@@ -28,7 +28,9 @@ class UserController extends Controller
 
 
         $user = User::where("email",$request->email)->first();
+        if(!$user) throw new RequestValidationException("Invalid account credentials provided");
         if(!Hash::check($request->password,$user->password)) throw new RequestValidationException("Invalid account credentials provided");
+       
 
         return response()->json([
             "status"=>true,
