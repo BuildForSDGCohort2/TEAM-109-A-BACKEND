@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Enums\Roles;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\LoginInputFormReqest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\AuthUserResource;
 use Illuminate\Support\Carbon;
@@ -23,7 +24,7 @@ class UserController extends Controller
     protected $users;
 
 
-    public function signInUser(Request $request){
+    public function signInUser(LoginInputFormReqest $request){
 
 
         $user = User::where("email",$request->email)->first();
@@ -42,7 +43,7 @@ class UserController extends Controller
         auth()->logout();
     }
 
-    public function store(Request $request)
+    public function store(UserRegisterRequest $request)
     {
 
         // return $request;
