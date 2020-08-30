@@ -24,6 +24,7 @@ Route::group(["middleware" => 'trusted_host'], function () {
     Route::group(['prefix'=> 'v1'], function () {
         Route::prefix('users')->group(function() {
             Route::post('/create', 'UserController@store');
+            Route::post('/signin', 'UserController@signInUser');
     
         });
     });

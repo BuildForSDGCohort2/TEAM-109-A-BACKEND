@@ -42,16 +42,12 @@ class AuthUserResource extends JsonResource
 
         return [
             "user"=>[
-                'first_name' => $this->fname,
-                'last_name' => $this->lname,
-                'email' => $this->email,
+                'first_name' => $this->first_name,
+                'last_name' => $this->last_name,
+                'email' => $this->email,    
                 'phone'=>$this->phone,
-                'verification_token' =>$this->verification_token,
                 'slug'=>$this->slug,
-                'verified'=>$this->verified,
-                'image'=>$this->image ? : 'N/A',
-
-
+        
             ],
             'roles' =>$roles,
             'permissions'=>$permissions,
