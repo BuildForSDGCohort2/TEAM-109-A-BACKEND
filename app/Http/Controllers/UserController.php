@@ -1,27 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Enums\Roles;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\AuthUserResource;
 use Illuminate\Support\Carbon;
+use App\Jobs\AccountCreationSendEmailJob;
+use Illuminate\Support\Facades\Log;
+
+use App\User;
 
 class UserController extends Controller
 {
     //
+    protected $users;
 
-    public function store(UserRegisterRequest $request)
+    public function store(Request $request)
     {
-
-        // $decodeImage = $this->getDecodedImage($request->image);
-
-        // return $result = $this->awsService->handleFacialRecognition([
-        //     "image" => $decodeImage,
-        //     "check_face_detection" => true,
-        //     "gender" => $request->gender,
-        // ]);
         
             DB::beginTransaction();
 
@@ -44,6 +41,28 @@ class UserController extends Controller
                 "data"=> new AuthUserResource($this->users),
                 "message"=>"Account Created successfully"
             ]);
+
+    }
+
+    public function created($request){
+
+       
+
+        $user = new User;
+
+        $user->fname = $request->firstname;
+        $user->lname = $request->lastname;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->image = $request->image->store('');
+        $user->password = bcrypt($request->password);
+        $user->slug = User::generateVerificationCode();
+
+
+        $user->save();
+        $user->assignRole(Roles::CUSTOMER);
+        return $user;
 
     }
 }

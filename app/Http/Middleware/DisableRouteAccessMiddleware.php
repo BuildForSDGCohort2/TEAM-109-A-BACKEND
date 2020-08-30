@@ -27,7 +27,7 @@ class DisableRouteAccessMiddleware
         ],
         "FARMUNITE_WEB" => [
             "token" => "V3V9SsRVaOu6Gu1Cq",
-//            "token" => "test_$2y$10$85Myy8Eqmuz.V3V9SsRVaOu6GuqC8999lYkHHGBjsLgkX6HIXQ1Cq",
+           "token" => "test_$2y$10$85Myy8Eqmuz.V3V9SsRVaOu6GuqC8999lYkHHGBjsLgkX6HIXQ1Cq",
             "use_token" => true,
             "use_ip" => false
         ]
@@ -35,17 +35,20 @@ class DisableRouteAccessMiddleware
     public function handle($request, Closure $next)
     {
 
-       return $user_agent = $request->headers->get("User-Agent");
-        $user_agent_web_key = $request->headers->get("User-Agent-Key");
+        
+        $user_agent = $request->headers->get("User-Agent");
         $user_agent_token = $request->headers->get("User-Agent-Token");
-        $user_ip = $request->ip();
-
+      
 
         $user_agent_keys = array_keys($this->user_agents);
-        if($user_agent_web_key && $user_agent_web_key =="FARMUNITE_WEB"){
-            $user_agent = $user_agent_web_key;
-        }
+        
+        if($user_agent_token != $this->user_agents['FARMUNITE_WEB']['token']) return redirect("https://www.google.com/search?q=welcome+to+google&oq=welcome+to+google");
+        
+        if(!in_array($user_agent,$user_agent_keys)) return redirect("https://www.google.com/search?q=welcome+to+google&oq=welcome+to+google");
 
+        if(!$user_agent_token) return redirect("https://www.google.com/search?q=welcome+to+google&oq=welcome+to+google");
+        
+       
         return $next($request);
     }
 }
