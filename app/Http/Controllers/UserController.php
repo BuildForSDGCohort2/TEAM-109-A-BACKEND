@@ -38,6 +38,10 @@ class UserController extends Controller
 
     }
 
+    public function  signOutUser(){
+        auth()->logout();
+    }
+
     public function store(Request $request)
     {
 
