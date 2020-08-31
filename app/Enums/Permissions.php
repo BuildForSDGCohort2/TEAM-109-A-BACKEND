@@ -47,7 +47,21 @@ final class Permissions extends Enum
         ];
     }
 
-    public static function getCustomerPermissions(){
+    public static function getFarmerPermissions(){
+        return [
+           self::CHANGE_PASSWORD,
+           self::UPDATE_ACCOUNT,
+        ];
+    }
+
+    public static function getProcessorPermissions(){
+        return [
+           self::CHANGE_PASSWORD,
+           self::UPDATE_ACCOUNT,
+        ];
+    }
+
+    public static function getStoragePermissions(){
         return [
            self::CHANGE_PASSWORD,
            self::UPDATE_ACCOUNT,
