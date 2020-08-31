@@ -1,4 +1,12 @@
 <?php
+/**
+ * This method will be used to 
+ * Resend Email confirming account  
+ * opening for a customer
+ *
+ * PHP version 5
+ *
+ */
 
 namespace App\Console\Commands;
 
@@ -40,7 +48,7 @@ class ResendEmailForNewAccountEveryMinute extends Command
     public function handle()
     {
         $failedJobs = DB::table('jobs')->get();
-        if($failedJobs){
+        if($failedJobs) {
            foreach($failedJobs as $failed) {
                dispatch(new AccountCreationSendEmailJob($failed));
            }
