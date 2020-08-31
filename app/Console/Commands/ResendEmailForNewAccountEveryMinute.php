@@ -39,9 +39,11 @@ class ResendEmailForNewAccountEveryMinute extends Command
      */
     public function handle()
     {
-        $failed_jobs = DB::table('jobs')->get();
-        if($failed_jobs){
-           foreach($failed_jobs as $failed){
+        $failedJobs = DB::table('jobs')->get();
+        if($failedJobs)
+        {
+           foreach($failedJobs as $failed)
+           {
                dispatch(new AccountCreationSendEmailJob($failed));
            }
         }
