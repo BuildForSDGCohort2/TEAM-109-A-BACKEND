@@ -128,4 +128,12 @@ class UserController extends Controller
             $user->assignRole($roleToAssign);
         }
     }
+
+
+    public function getUsers(){
+        return response()->json([
+            'data'=>User::all(),
+            'message'=>'All Usera gooten Succesfully'
+        ]);
+    }
 }

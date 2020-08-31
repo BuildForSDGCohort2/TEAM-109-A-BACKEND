@@ -19,4 +19,11 @@ Route::group(["middleware" => 'trusted_host'], function () {
         });
     });
 
+    //All Route Groups that requires Authentication should go here
+    Route::group(['middleware' => 'jwt', 'prefix' => 'v1'], function () {
+        Route::prefix('users')->group(function() {
+            Route::get('/all', 'UserController@getUsers');
+        });
+    });
+
 });
