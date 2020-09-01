@@ -1,4 +1,9 @@
 <?php
+/**
+ * Keernel file
+ *
+ * PHP version 5
+ */
 
 namespace App\Console;
 
@@ -17,7 +22,7 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * Define the application's command schedule.
+     * Define the application command schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
@@ -25,8 +30,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('resend_email:every_minute')
-        ->everyMinute();
+        $schedule
+            ->command('resend_email:every_minute')
+            ->everyMinute();
     }
 
     /**

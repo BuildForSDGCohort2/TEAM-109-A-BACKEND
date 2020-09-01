@@ -1,9 +1,13 @@
 <?php
+/**
+ * Enumfile
+ *
+ * PHP version 5
+ */
 
 namespace App\Enums;
 
 use BenSampo\Enum\Enum;
-
 /**
  * @method static static OptionOne()
  * @method static static OptionTwo()
@@ -30,6 +34,11 @@ final class Permissions extends Enum
     const CHANGE_STATUS = "CHANGE_STATUS";
 
 
+    /**
+     * Enum file
+     *
+     * PHP version 5
+     */
     public static function getSuperAdminPermissions(){
         return [
             self::CREATE_USER,
@@ -39,6 +48,12 @@ final class Permissions extends Enum
         ];
     }
 
+    /**
+     * Enum file
+     *
+     * PHP version 5
+     */
+
     public static function getAdminPermissions(){
         return [
             self::ACTIVATE_USER,
@@ -47,6 +62,12 @@ final class Permissions extends Enum
         ];
     }
 
+
+    /**
+     * Enum file
+     *
+     * PHP version 5
+     */
     public static function getFarmerPermissions(){
         return [
            self::CHANGE_PASSWORD,
@@ -54,6 +75,12 @@ final class Permissions extends Enum
         ];
     }
 
+
+    /**
+     * Enum file
+     *
+     * PHP version 5
+     */
     public static function getProcessorPermissions(){
         return [
            self::CHANGE_PASSWORD,
@@ -61,6 +88,12 @@ final class Permissions extends Enum
         ];
     }
 
+
+    /**
+     * Enum file
+     *
+     * PHP version 5
+     */
     public static function getStoragePermissions(){
         return [
            self::CHANGE_PASSWORD,

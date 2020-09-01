@@ -1,4 +1,9 @@
 <?php
+/**
+ * Enum file
+ *
+ * PHP version 5
+ */
 
 namespace App\Enums;
 

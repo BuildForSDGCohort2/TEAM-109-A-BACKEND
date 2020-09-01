@@ -1,4 +1,9 @@
 <?php
+/**
+ * Keernel file
+ *
+ * PHP version 5
+ */
 
 namespace App\Http;
 
