@@ -23,6 +23,9 @@ Route::group(["middleware" => 'trusted_host'], function () {
     Route::group(['middleware' => 'jwt', 'prefix' => 'v1'], function () {
         Route::prefix('users')->group(function() {
             Route::get('/all', 'UserController@getUsers');
+            Route::get('/countries', 'CountryController@getCountries');
+            Route::get('/{country}/states', 'StateController@getStates');
+            Route::get('/{state}/lgas', 'LgaController@getLgas');
         });
     });
 
